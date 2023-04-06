@@ -1,5 +1,5 @@
 package com.magneticmediadatabase.bcs.domain.port.in;
 
-public interface DeleteUseCase{
+public interface DeleteIronLlegadaUseCase{
     boolean deleteIronLlegada(Long id);
 }
