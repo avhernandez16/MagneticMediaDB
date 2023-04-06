@@ -1,4 +1,4 @@
-package com.magneticmediadatabase.bcs.infraestructure.rest.controller;
+package com.magneticmediadatabase.bcs.infraestructure.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
