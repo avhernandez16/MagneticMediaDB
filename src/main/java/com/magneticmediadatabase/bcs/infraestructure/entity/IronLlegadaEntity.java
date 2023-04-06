@@ -20,6 +20,8 @@ public class IronLlegadaEntity {
     @Size(min = 10, max = 20, message = "El numero de remision debe tener minimo 10 caracteres")
     @NotBlank(message = "El numero de remision no debe estar en blanco")
     private long id;
+    @Column(name="fecha_entrada")
+    private LocalDateTime dateCreated;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
