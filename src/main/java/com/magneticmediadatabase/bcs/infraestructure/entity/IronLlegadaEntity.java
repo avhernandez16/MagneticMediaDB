@@ -1,6 +1,7 @@
 package com.magneticmediadatabase.bcs.infraestructure.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.magneticmediadatabase.bcs.domain.model.IronLlegada;
 import jakarta.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotBlank;
@@ -16,12 +17,18 @@ import lombok.NoArgsConstructor;
 @Data
 public class IronLlegadaEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idiron_llegada")
-    @Size(min = 10, max = 20, message = "El numero de remision debe tener minimo 10 caracteres")
-    @NotBlank(message = "El numero de remision no debe estar en blanco")
     private Long id;
+
+
+    @Column(name="numero_remision")
+    private int numeroRemision;
+
     @Column(name="fecha_entrada")
     private LocalDateTime dateCreated;
+
+    private boolean completed;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,4 +50,22 @@ public class IronLlegadaEntity {
     @JoinColumn(name="fk_Medio")
     @JsonIgnoreProperties("listaMedio")
     private MedioEntity medioEntity;
+
+    public IronLlegadaEntity(Long id, int numeroRemision, LocalDateTime dateCreated, boolean completed) {
+        this.id = id;
+        this.numeroRemision = numeroRemision;
+        this.dateCreated = dateCreated;
+        this.completed = completed;
+    }
+
+    //metodos equivalentes a la clase mapper
+    public static IronLlegadaEntity fromDomainModel (IronLlegada ironLlegada){
+        return new IronLlegadaEntity(ironLlegada.getId(), ironLlegada.getNumeroRemision(), ironLlegada.getDateCreated(),ironLlegada.isCompleted());
+    }
+
+    public IronLlegada toDomainModel(){
+        return new IronLlegada(id, numeroRemision, dateCreated,completed);
+    }
+
+
 }

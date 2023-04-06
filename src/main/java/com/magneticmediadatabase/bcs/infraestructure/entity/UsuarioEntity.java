@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @Entity
@@ -14,7 +16,7 @@ public class UsuarioEntity {
     @Column(name = "idUsuarios", nullable = false)
     private Integer id;
 
-
+    @NotBlank(message = "El primer nombre no debe estar en blanco")
     @Column(name = "primer_nombre", nullable = false, length = 15)
     private String primerNombre;
 
@@ -22,7 +24,7 @@ public class UsuarioEntity {
     @Column(name = "segundo_nombre", length = 15)
     private String segundoNombre;
 
-
+    @NotBlank(message = "El primer apellido no debe estar en blanco")
     @Column(name = "primer_apellido", nullable = false, length = 15)
     private String primerApellido;
 
