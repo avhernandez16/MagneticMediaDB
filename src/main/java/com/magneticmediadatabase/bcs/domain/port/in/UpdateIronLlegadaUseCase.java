@@ -1,4 +1,4 @@
-package com.magneticmediadatabase.bcs.domain.port.In;
+package com.magneticmediadatabase.bcs.domain.port.in;
 
 import com.magneticmediadatabase.bcs.domain.model.IronLlegada;
 

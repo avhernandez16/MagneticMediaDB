@@ -19,7 +19,7 @@ public class IronLlegadaEntity {
     @Column(name="idiron_llegada")
     @Size(min = 10, max = 20, message = "El numero de remision debe tener minimo 10 caracteres")
     @NotBlank(message = "El numero de remision no debe estar en blanco")
-    private long id;
+    private Long id;
     @Column(name="fecha_entrada")
     private LocalDateTime dateCreated;
 
