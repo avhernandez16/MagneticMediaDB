@@ -3,11 +3,12 @@ package com.magneticmediadatabase.bcs.infraestructure.repositories;
 import com.magneticmediadatabase.bcs.domain.model.IronLlegada;
 import com.magneticmediadatabase.bcs.domain.port.out.IronLlegadaRepositoryPort;
 import com.magneticmediadatabase.bcs.infraestructure.entity.IronLlegadaEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Component
 public class JpaIronLlegadaRepositoryAdapter implements IronLlegadaRepositoryPort {
 
     private final JpaIronLlegadaRepository jpaIronLlegadaRepository;

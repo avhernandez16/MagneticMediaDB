@@ -28,8 +28,4 @@ public class ApplicationConfig {
         return jpaIronLlegadaRepositoryAdapter;
     }
 
-    @Bean
-    public ExternalServicePort externalServicePort(){
-        return new ExternalServiceAdapter();
-    }
 }
