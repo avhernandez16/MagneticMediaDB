@@ -16,10 +16,11 @@ public class IronLlegadaService implements CreateIronLlegadaUseCase, UpdateIronL
     private final RetrieveIronLlegadaUseCase retrieveIronLlegadaUseCase;
     private final DeleteIronLlegadaUseCase deleteIronLlegadaUseCase;
 
-    public IronLlegadaService(CreateIronLlegadaUseCase createIronLlegadaUseCase, UpdateIronLlegadaUseCase updateIronLlegadaUseCase, RetrieveIronLlegadaUseCase retrieveIronLlegadaUseCase, DeleteIronLlegadaUseCase deleteIronLlegadaUseCase) {
+    public IronLlegadaService(CreateIronLlegadaUseCase createIronLlegadaUseCase, RetrieveIronLlegadaUseCase retrieveIronLlegadaUseCase,
+                       UpdateIronLlegadaUseCase updateIronLlegadaUseCase, DeleteIronLlegadaUseCase deleteIronLlegadaUseCase) {
         this.createIronLlegadaUseCase = createIronLlegadaUseCase;
-        this.updateIronLlegadaUseCase = updateIronLlegadaUseCase;
         this.retrieveIronLlegadaUseCase = retrieveIronLlegadaUseCase;
+        this.updateIronLlegadaUseCase = updateIronLlegadaUseCase;
         this.deleteIronLlegadaUseCase = deleteIronLlegadaUseCase;
     }
 
