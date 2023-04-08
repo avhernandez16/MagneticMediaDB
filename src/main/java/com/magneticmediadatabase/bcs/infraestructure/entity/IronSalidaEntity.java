@@ -105,6 +105,10 @@ public class IronSalidaEntity {
         this.codigo = codigo;
     }
 
+    public IronSalida toDomainModel(){
+        return new IronSalida(id, fecha_salida, fecha_devolucion, usuario, ubicacion, tipo_transporte, numero_remision, codigo);
+    }
+
     public static IronSalidaEntity fromDomainModel (IronSalida ironSalida){
         return new IronSalidaEntity(
                 ironSalida.getId(),
