@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface RetrieveIronSalidaUseCase {
 
-    Optional<IronSalida> getTask(Long id);
+    Optional<IronSalida> getIronSalida(Long id);
     List<IronSalida> getAllIronSalida();
 }
