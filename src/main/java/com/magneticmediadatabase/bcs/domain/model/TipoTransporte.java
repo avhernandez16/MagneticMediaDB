@@ -3,18 +3,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-
 @Data
-public class Medio{
+public class TipoTransporte{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Integer id;
-    private final String codigoCinta;
+    private final String nombreTipoTransporte;
 
-    public Medio(Integer id, String codigoCinta) {
+    public TipoTransporte(Integer id, String nombreTipoTransporte) {
         this.id = id;
-        this.codigoCinta = codigoCinta;
+        this.nombreTipoTransporte = nombreTipoTransporte;
     }
 }
-
 
