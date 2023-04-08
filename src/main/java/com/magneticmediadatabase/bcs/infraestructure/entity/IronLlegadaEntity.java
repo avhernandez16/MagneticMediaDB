@@ -3,9 +3,10 @@ package com.magneticmediadatabase.bcs.infraestructure.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.magneticmediadatabase.bcs.domain.model.IronLlegada;
 import jakarta.persistence.*;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,50 +22,48 @@ public class IronLlegadaEntity {
     @Column(name="idiron_llegada")
     private Long id;
 
+    @Size(min = 10, max = 20, message = "El numero de remision debe tener minimo 10 caracteres")
+    @NotBlank(message = "El numero de remision no debe estar en blanco")
+    @Column(name="numero_remision", nullable = false)
+    private String numeroRemision;
 
-    @Column(name="numero_remision")
-    private int numeroRemision;
-
-    @Column(name="fecha_entrada")
-    private LocalDateTime dateCreated;
-
-    private boolean completed;
+    @Column(name="fecha_entrada", nullable = false)
+    private LocalDate dateCreated;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fk_Usuarios")
+    @JoinColumn(name="fk_Usuarios", nullable = false)
     @JsonIgnoreProperties("listaUsuarios")
-    private UsuarioEntity usuarioEntity;
+    private com.magneticmediadatabase.bcs.infraestructure.entity.UsuarioEntity fkUsuarios;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fk_Ubicacion")
+    @JoinColumn(name="fk_Ubicacion", nullable = false)
     @JsonIgnoreProperties("listaUbicacion")
-    private UbicacionFisicaEntity ubicacionFisicaEntityEntity;
+    private com.magneticmediadatabase.bcs.infraestructure.entity.UbicacionFisicaEntity fkUbicacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fk_Tipo_transporte")
+    @JoinColumn(name="fk_Tipo_transporte", nullable = false)
     @JsonIgnoreProperties("listaTransporte")
-    private TipoTransporteEntity tipoTransporteEntity;
+    private com.magneticmediadatabase.bcs.infraestructure.entity.TipoTransporteEntity fkTipoTransporte;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fk_Medio")
+    @JoinColumn(name="fk_Medio", nullable = false)
     @JsonIgnoreProperties("listaMedio")
-    private MedioEntity medioEntity;
+    private com.magneticmediadatabase.bcs.infraestructure.entity.MedioEntity fkMedio;
 
-    public IronLlegadaEntity(Long id, int numeroRemision, LocalDateTime dateCreated, boolean completed) {
+    public IronLlegadaEntity(Long id, String numeroRemision, LocalDate dateCreated) {
         this.id = id;
         this.numeroRemision = numeroRemision;
         this.dateCreated = dateCreated;
-        this.completed = completed;
     }
 
     //metodos equivalentes a la clase mapper
     public static IronLlegadaEntity fromDomainModel (IronLlegada ironLlegada){
-        return new IronLlegadaEntity(ironLlegada.getId(), ironLlegada.getNumeroRemision(), ironLlegada.getDateCreated(),ironLlegada.isCompleted());
+        return new IronLlegadaEntity(ironLlegada.getId(), ironLlegada.getNumeroRemision(), ironLlegada.getDateCreated());
     }
 
     public IronLlegada toDomainModel(){
-        return new IronLlegada(id, numeroRemision, dateCreated,completed);
+        return new IronLlegada(id, numeroRemision, dateCreated);
     }
 
 

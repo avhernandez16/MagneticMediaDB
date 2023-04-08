@@ -1,10 +1,14 @@
 package com.magneticmediadatabase.bcs.infraestructure.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -31,4 +35,22 @@ public class UsuarioEntity {
     @Column(name = "segundo_apellido", nullable = false, length = 15)
     private String segundoApellido;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fk_rol_usuario", nullable = false)
+    private com.magneticmediadatabase.bcs.infraestructure.entity.RolUsuarioEntity fkRolUsuario;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fk_Estado_Usuario", nullable = false)
+    private com.magneticmediadatabase.bcs.infraestructure.entity.EstadoUsuarioEntity fkEstadoUsuario;
+
+    @OneToMany(mappedBy = "fkUsuarios")
+    private Set<CatalogoEntity> catalogos = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "fkUsuarios")
+    private Set<com.magneticmediadatabase.bcs.infraestructure.entity.IronLlegadaEntity> ironLlegadas = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "fkUsuarios")
+    private Set<com.magneticmediadatabase.bcs.infraestructure.entity.IronSalidaEntity> ironSalidas = new LinkedHashSet<>();
 }
