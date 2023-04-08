@@ -16,5 +16,6 @@ public class UpdateIronSalidaUseCaseImp implements UpdateIronSalidaUseCase {
     @Override
     public Optional<IronSalida> UpdateIronSalida(Long id, IronSalida UpdateIronSalida) {
         return ironSalidaRepositoryPort.update(UpdateIronSalida);
+
     }
 }
