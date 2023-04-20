@@ -33,6 +33,9 @@ public class IronSalida {
         this.codigo = codigo;
     }
 
+    public IronSalida(Long id, LocalDate fechaSalida, LocalDate fechaDevolucion) {
+    }
+
     public Long getId() {
         return id;
     }
