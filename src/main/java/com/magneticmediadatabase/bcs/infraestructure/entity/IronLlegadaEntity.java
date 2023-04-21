@@ -3,6 +3,8 @@ package com.magneticmediadatabase.bcs.infraestructure.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.magneticmediadatabase.bcs.domain.model.IronLlegada;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
@@ -13,10 +15,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "iron_llegada")
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class IronLlegadaEntity {
+public class IronLlegadaEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idiron_llegada")
@@ -51,19 +52,23 @@ public class IronLlegadaEntity {
     @JsonIgnoreProperties("listaMedio")
     private com.magneticmediadatabase.bcs.infraestructure.entity.MedioEntity fkMedio;
 
-    public IronLlegadaEntity(Long id, String numeroRemision, LocalDate dateCreated) {
+    public IronLlegadaEntity(Long id, String numeroRemision, LocalDate dateCreated, UsuarioEntity fkUsuarios, UbicacionFisicaEntity fkUbicacion, TipoTransporteEntity fkTipoTransporte, MedioEntity fkMedio) {
         this.id = id;
         this.numeroRemision = numeroRemision;
         this.dateCreated = dateCreated;
+        this.fkUsuarios = fkUsuarios;
+        this.fkUbicacion = fkUbicacion;
+        this.fkTipoTransporte = fkTipoTransporte;
+        this.fkMedio = fkMedio;
     }
 
     //metodos equivalentes a la clase mapper
     public static IronLlegadaEntity fromDomainModel (IronLlegada ironLlegada){
-        return new IronLlegadaEntity(ironLlegada.getId(), ironLlegada.getNumeroRemision(), ironLlegada.getDateCreated());
+        return new IronLlegadaEntity(ironLlegada.getId(), ironLlegada.getNumeroRemision(), ironLlegada.getDateCreated(), ironLlegada.getUsuarioEntity(), ironLlegada.getUbicacionFisicaEntity(), ironLlegada.getTipoTransporteEntity(), ironLlegada.getMedioEntity());
     }
 
     public IronLlegada toDomainModel(){
-        return new IronLlegada(id, numeroRemision, dateCreated);
+        return new IronLlegada(id, numeroRemision, dateCreated, fkUsuarios, fkUbicacion, fkTipoTransporte, fkMedio );
     }
 
 
