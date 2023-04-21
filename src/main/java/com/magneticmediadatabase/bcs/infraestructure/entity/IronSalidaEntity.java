@@ -30,6 +30,9 @@ public class IronSalidaEntity {
     private Long numero_remision;
     private Long codigo;
 
+    public IronSalidaEntity() {
+    }
+
     public IronSalidaEntity(Long id, LocalDate fecha_salida, LocalDate fecha_devolucion, String usuario, String ubicacion, String tipo_transporte, Long numero_remision, Long codigo){
         this.id = id;
         this.fecha_salida = fecha_salida;
