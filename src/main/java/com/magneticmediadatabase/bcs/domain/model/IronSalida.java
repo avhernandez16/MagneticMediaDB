@@ -13,6 +13,8 @@ public class IronSalida {
     private Long numero_remision;
     private Long codigo;
 
+//    Constructores
+
     public IronSalida (
             Long id,
             LocalDate fecha_salida,
